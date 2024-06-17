@@ -1,0 +1,60 @@
+body {
+    background-color: #141414;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.navbar-brand img {
+    width: 120px;
+}
+.login-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+.login-container h2 {
+    margin-bottom: 20px;
+}
+.form-control {
+    background-color: #333;
+    border: 1px solid #333;
+    color: #fff;
+}
+.form-control:focus {
+    background-color: #333;
+    border: 1px solid #666;
+    color: #fff;
+}
+.btn-netflix {
+    background-color: #e50914;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+}
+.btn-netflix:hover {
+    background-color: #f40612;
+}
+.form-check-label, .form-check-input {
+    color: #b3b3b3;
+}
+.footer {
+    color: #b3b3b3;
+    margin-top: 20px;
+    text-align: center;
+}
+.footer a {
+    color: #b3b3b3;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}

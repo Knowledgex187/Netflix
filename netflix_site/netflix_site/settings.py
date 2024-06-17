@@ -58,7 +58,8 @@ ROOT_URLCONF = "netflix_site.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        # Tells Django where to find templates
+        "DIRS": [os.path.join(BASE_DIR, "/netflix_site/core/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,7 +124,12 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 # Additional locations the staticfiles app will traverse.
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
