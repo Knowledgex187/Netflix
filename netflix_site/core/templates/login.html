@@ -34,7 +34,8 @@
             type="email"
             class="form-control"
             id="email"
-            placeholder="Enter your email" />
+            placeholder="Enter your email"
+            required />
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
@@ -42,7 +43,8 @@
             type="password"
             class="form-control"
             id="password"
-            placeholder="Enter your password" />
+            placeholder="Enter your password"
+            required />
         </div>
         <button type="submit" class="btn btn-netflix w-100">Sign In</button>
         <div class="form-check mt-3">
@@ -56,7 +58,9 @@
       <div class="mt-4">
         <p>
           New to Netflix?
-          <a href="#" class="text-decoration-none text-white">Sign up now</a>.
+          <a href="{% url 'signup' %}" class="text-decoration-none text-white"
+            >Sign up now</a
+          >
         </p>
       </div>
       <div class="footer">

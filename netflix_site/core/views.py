@@ -7,12 +7,12 @@ def home(request):
 
 
 def login(request):
-    pass
+    return render(request, "login.html")
 
 
 def signup(request):
-    pass
+    return render(request, "signup.html")
 
 
 def profiles(request):
-    pass
+    return render(request, "profiles.html")

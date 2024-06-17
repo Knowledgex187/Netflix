@@ -75,15 +75,3 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   z-index: 0;
   }
-.form-control {
-  font-size: 1.5rem; /* Adjust the font size for button text */
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-control::placeholder {
-  font-size: 1.2rem; /* Smaller placeholder text */
-  transition: font-size 0.3s ease; /* Transition for shrinking */
-}
-.form-control:focus::placeholder {
-  font-size: 0.8rem; /* Smaller placeholder text on focus */
-}
