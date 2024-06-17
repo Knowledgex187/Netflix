@@ -17,7 +17,7 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-dark">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{% url 'home' %}">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
           alt="Netflix Logo" />
@@ -27,7 +27,7 @@
     <!-- Login Container -->
     <div class="login-container">
       <h2>Sign In</h2>
-      <form>
+      <form method="POST">
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input
