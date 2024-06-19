@@ -5,34 +5,50 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
     margin: 0;
 }
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    position: absolute; /* Fixes the navbar at the top */
+    top: 0; /* Aligns the navbar to the top */
+    left: 0; /* Aligns the navbar to the left */
+}
+
 .navbar-brand img {
     width: 120px;
 }
+
 .sign-up-container {
     background-color: rgba(0, 0, 0, 0.75);
     padding: 40px 30px;
     border-radius: 8px;
     width: 100%;
     max-width: 400px;
-
+    margin-top: 100px; /* Adds space below the navbar */
+    text-align: start; /* Centers text inside the container */
 }
+
 .sign-up-container h2 {
     margin-bottom: 20px;
 }
+
 .form-control {
     background-color: #333;
     border: 1px solid #333;
     color: #fff;
 }
+
 .form-control:focus {
     background-color: #333;
     border: 1px solid #666;
     color: #fff;
 }
+
 .btn-netflix {
     background-color: #e50914;
     color: white;
@@ -42,21 +58,26 @@ body {
     border-radius: 5px;
     width: 100%;
 }
+
 .btn-netflix:hover {
     background-color: #f40612;
 }
+
 .form-text, .footer-text {
     color: #b3b3b3;
 }
+
 .footer {
     color: #b3b3b3;
     margin-top: 20px;
     text-align: center;
 }
+
 .footer a {
     color: #b3b3b3;
     text-decoration: none;
 }
+
 .footer a:hover {
     text-decoration: underline;
 }

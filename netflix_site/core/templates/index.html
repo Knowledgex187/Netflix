@@ -12,12 +12,13 @@
       rel="stylesheet" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/loggedin.css' %}" />
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'home' %}">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
             alt="Netflix Logo"
@@ -33,39 +34,218 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div>
+          <style>
+            h6 {
+              color: red;
+            }
+          </style>
+          {% for message in messages %}
+          <h6>{{message}}</h6>
+          {% endfor %}
+        </div>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <button class="nav-link btn btn-danger">
-              <a class="nav-link" href="{% url 'login' %}"
+          <ul class="navbar-nav ms-auto d-flex align-items-center">
+              <li class="nav-item">
+                  {% if user.is_authenticated %}
+                  <li class="btn btn-secondary">
+                  <a href="/my-list">My List</a>
+                  </li>
+                  <li class="nav-item">
+                  <div class="dropdown">
+                      <button class="btn btn-danger dropdown-toggle mx-2 justify-content-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Genres
+                      </button>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item" href="/genre/action/">Action</a>
+                          <a class="dropdown-item" href="/genre/comedy/">Comedy</a>
+                          <a class="dropdown-item" href="/genre/drama/">Drama</a>
+                          <a class="dropdown-item" href="/genre/horror/">Horror</a>
+                          <a class="dropdown-item" href="/genre/romance/">Romance</a>
+                          <a class="dropdown-item" href="/genre/sciencefiction/">Science Fiction</a>
+                          <a class="dropdown-item" href="/genre/fantasy/">Fantasy</a>
+                      </div>
+                    </div> 
+                    <li>
+                      <span class="nav-link">
+                        Welcome, {{ user.first_name }}
+                    </span>
+                    </li>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link btn btn-danger mx-2" href="{% url 'logout' %}">Logout</a>
+              </li>
+              {% else %}
+              <a class="nav-link btn btn-danger" href="{% url 'login' %}"
                 >Sign In
-                </button>
               </a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </nav>
-    <div class="background-container">
-      <div class="overlay">
-        <img
-        src="{% static 'images/index-bg-image.jpg' %}"
-        alt="background image" />
+
+    {% if user.is_authenticated %}
+    <div class="container-fluid p-0">
+      <div class="banner">
+          <img src="banner.jpg" alt="Banner" class="img-fluid">
+          <div class="banner-content">
+              <h1>Featured Movie</h1>
+              <p>A thrilling adventure awaits you!</p>
+              <button class="btn btn-primary">Watch Now</button>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-3">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-3">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-3">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-3">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+        </div> 
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+  <div class="container mt-5">
+      <div class="row movie-thumbnails">
+          <!-- Example Movie Thumbnail -->
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+              <div class="movie-thumbnail" data-video="trailer.mp4">
+                  <img src="movie1.jpg" alt="Movie 1" class="img-fluid">
+                  <div class="movie-info">
+                      <h5>Movie Title 1</h5>
+                  </div>
+              </div>
+          </div>
+
+    {% else %}
+    <div class="container-fluid p-0">
+      <div class="banner">
+        <img class="img-fluid"
+          src="{% static 'images/index-bg-image.jpg' %}"
+          alt="background image" />
+          <div class="banner-content">
+            <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h2><strong>Unlimited movies, TV shows, and more.</strong></h2>
+        <p>Watch anywhere. Cancel anytime.</p>
+        <label for="email-address">
+          <a href="{% url 'signup' %}" class="btn btn-netflix inline"
+            >Get Started</a
+          >
+        </label>
       </div>
     </div>
-
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="hero-content">
-          <h1><strong>Unlimited movies, TV shows, and more.</strong></h1>
-          <p><strong>Watch anywhere. Cancel anytime.</strong></p>
-          <label for="email-address">
-          <a href="{% url 'signup' %}" class="btn btn-netflix inline">Get Started</a>
-        </label>
-        </div>
+          </div>
       </div>
+  </div>
+
     
-    
+    {% endif %}
     <!-- Footer -->
     <div class="footer">
       <p>Questions? Call <a href="tel:000-800-040-1843">000-800-040-1843</a></p>
@@ -109,5 +289,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '/js/script.js' %}"></script>
   </body>
 </html>

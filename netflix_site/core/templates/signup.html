@@ -16,24 +16,49 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark w-100">
-      <a class="navbar-brand mx-auto" href="{% url 'home' %}">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-          alt="Netflix Logo" />
-      </a>
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+            alt="Netflix Logo"
+            class="mx-5" />
+        </a>
     </nav>
 
     <!-- Sign Up Container -->
     <div class="sign-up-container">
       <h2>Create Your Account</h2>
-      <form method="POST">
+      <!--Display messages-->
+      <div>
+        <style>
+          h6{
+            color: red;
+          }
+        </style>
+        {% for message in messages %}
+        <h6>{{message}}</h6>
+        {% endfor %}
+      </div>
+
+      <!-- Must have action blanked and Method Post-->
+      <form action="" method="POST">
+        <!--This token must be added to authenticate in Django-->
+        {% csrf_token %}
         <div class="mb-3">
-          <label for="email" class="form-label text-start">Email</label>
+          <label for="username" class="form-label text-start">Username</label>
           <input
             type="email"
             class="form-control"
-            id="email"
+            name="username"
+            placeholder="Please enter your email"
+            required />
+        <div class="mb-3">
+          <label for="email" class="form-label text-start my-2">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
             placeholder="Enter your email"
             required />
           <div class="form-text">
@@ -45,38 +70,45 @@
           <input
             type="text"
             class="form-control"
-            id="first_name"
+            name="first_name"
             placeholder="Enter your First Name"
             required />
+          <div class="form-text">Must be more than two characters.</div>
         </div>
         <div class="mb-3">
           <label for="last_name" class="form-label">Last Name</label>
           <input
             type="text"
             class="form-control"
-            id="last_name"
+            name="last_name"
             placeholder="Enter your Last Name"
             required />
+          <div class="form-text">Must be more than two characters</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input
             type="password"
             class="form-control"
-            id="password"
+            name="password"
             placeholder="Enter your password"
             required />
-          <div class="form-text">Must be at least 8 characters.</div>
+
+          <div class="form-text">
+            Must be at least 8 characters, and contain a special character.
+          </div>
         </div>
         <div class="mb-3">
           <label for="password1" class="form-label">Confirm Password</label>
           <input
             type="password"
             class="form-control"
-            id="password1"
+            name="password1"
             placeholder="Enter your password"
             required />
-          <div class="form-text">Must be at least 8 characters.</div>
+          <div class="form-text">
+            Must be at least 8 characters, and contain a special character.
+          </div>
         </div>
         <button type="submit" class="btn btn-netflix">Sign Up</button>
       </form>
