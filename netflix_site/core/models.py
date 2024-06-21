@@ -21,23 +21,23 @@ class Movies(models.Model):
     # This field stores a universally unique identifier
     uuid = models.UUIDField(default=uuid.uuid4)
     # This field stores a short text, in this case, the title of the movie.
-    title = models.CharField(255)
+    title = models.CharField()
     # This field is intended to store a description of the movie.
-    description = models.TextField(255)
+    description = models.TextField()
     # This field stores the names of the main actors or stars of the movie.
-    stars = models.CharField(100)
+    stars = models.CharField()
     # This field stores the release date of the movie in date format (YYYY-MM-DD).
     release_date = models.DateField()
     # This field stores the genre of the movie.
-    genre = models.CharField(100, choices=GENRE_CHOICES)
+    genre = models.CharField(choices=GENRE_CHOICES)
     # This field stores the length of the movie in minutes.
     length = models.PositiveIntegerField()
     # This field stores the name of the director of the movie.
-    director = models.CharField(50)
+    director = models.CharField()
     # This field stores the name of the producer of the movie.
-    produced_by = models.CharField(50)
+    produced_by = models.CharField()
     # This field stores the name(s) of the writer(s) of the movie.
-    writers = models.CharField(50)
+    writers = models.CharField()
     # This field is for storing an image associated with the movie, typically a small thumbnail or card image.
     image_card = models.ImageField(upload_to="images/")
     # This field is for storing a larger cover image for the movie.
