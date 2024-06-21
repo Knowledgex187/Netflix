@@ -122,241 +122,30 @@
       </div>
     </div>
 
-    <section>
-      <div class="mt-5">
-        <div class="row">
-          <div class="movie-thumbnails">
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/blade.jpg' %}"
-                  alt="Movie 1"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Blade Trinity</h5>
-                </div>
-              </div>
+    <div class="mt-5">
+      <h3 class="py-3 text-center"><strong>Popular on Netflix</strong></h3>
+      <div class="row movie-thumbnails">
+        {% for movie in movies %}
+        <!-- Movie Thumbnail -->
+        <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="movie-thumbnail" data-video="trailer.mp4">
+            <div
+              style="background-image: url('{{ movie.image_card.url }}');"
+              class="thumbnail-image">
+              <img
+                src="url('{{ movie.image_card.url }}"
+                alt=""
+                class="img-fluid" />
             </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/venom.jpg' %}"
-                  alt="Movie 2"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Venom</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/scarface.jpg' %}"
-                  alt="Movie 3"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Scarface</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/F&F.jpg' %}"
-                  alt="Movie 4"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Fast & Furious</h5>
-                </div>
-              </div>
+            <div class="movie-info">
+              <h5>{{movie.title}}</h5>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
+    </div>
 
-      <div class="mt-5">
-        <div class="row">
-          <div class="movie-thumbnails">
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/F&F2.jpg' %}"
-                  alt="Movie 1"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>The Fast & The Furious</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/friday.jpg' %}"
-                  alt="Movie 2"
-                  class="img-fluid"
-                  height="2100"
-                  width="1400" />
-                <div class="movie-info">
-                  <h5>Friday</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/matrix.jpg' %}"
-                  alt="Movie 3"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>The Matrix</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/dark2.jpg' %}"
-                  alt="Movie 4"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>The Dark knight Rises</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-5">
-        <div class="row">
-          <div class="movie-thumbnails">
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/matrix3.jpg' %}"
-                  alt="Movie 1"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Matrix Revolutions</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/shank.jpg' %}"
-                  alt="Movie 2"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Shawnshank Redemption</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/twilight.jpg' %}"
-                  alt="Movie 3"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Twilight</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/star-wars-3.jpg' %}"
-                  alt="Movie 4"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Star Wars: The Rise of Skywalker</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-5">
-        <div class="row">
-          <div class="movie-thumbnails">
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/star-wars-f.jpg' %}"
-                  alt="Movie 1"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Star Wars: The Force Awakens</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/belly.jpg' %}"
-                  alt="Movie 2"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Belly</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/twilight3.jpg' %}"
-                  alt="Movie 3"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Twilight New Moon</h5>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example Movie Thumbnail -->
-            <div class="col">
-              <div class="movie-thumbnail" data-video="trailer.mp4">
-                <img
-                  src="{% static '/images/peaky.jpg' %}"
-                  alt="Movie 4"
-                  class="img-fluid" />
-                <div class="movie-info">
-                  <h5>Peaky Blinders</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     {% else %}
     <div class="container-fluid p-0">
       <div class="banner">
