@@ -18,6 +18,14 @@ class Movies(models.Model):
         ("FANTASY", "Fantasy"),
     ]
 
+    RATING = [
+        ("U", "U"),
+        ("PG", "PG"),
+        ("12", "12"),
+        ("15", "15"),
+        ("18", "18"),
+    ]
+
     # This field stores a universally unique identifier
     uuid = models.UUIDField(default=uuid.uuid4)
     # This field stores a short text, in this case, the title of the movie.
@@ -30,6 +38,8 @@ class Movies(models.Model):
     release_date = models.DateField()
     # This field stores the genre of the movie.
     genre = models.CharField(choices=GENRE_CHOICES)
+    # Rating
+    rating = models.CharField(choices=RATING, default="U")
     # This field stores the length of the movie in minutes.
     length = models.PositiveIntegerField()
     # This field stores the name of the director of the movie.
@@ -39,11 +49,11 @@ class Movies(models.Model):
     # This field stores the name(s) of the writer(s) of the movie.
     writers = models.CharField()
     # This field is for storing an image associated with the movie, typically a small thumbnail or card image.
-    image_card = models.ImageField(upload_to="images/")
+    image_card = models.ImageField(upload_to="media/images/")
     # This field is for storing a larger cover image for the movie.
-    image_cover = models.ImageField(upload_to="images/")
+    image_cover = models.ImageField(upload_to="media/images/")
     # This field stores a video file of the movie.
-    video = models.FileField(upload_to="movie_videos/")
+    video = models.FileField(upload_to="media/")
     # This field keeps track of the number of views the movie has received.
     movie_views = models.IntegerField(default=0)
 
