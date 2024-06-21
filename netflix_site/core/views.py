@@ -16,13 +16,24 @@ from django.core.validators import validate_email
 # Imports authenticate and login modules
 from django.contrib.auth import authenticate, login, logout as auth_logout
 
+# Import database
+from .models import Movie
+
 # Special Character Syntax
 SpecialSym = set("!£$%^&*()?@;:~`¬-=_+")
 
 
 # Create your views here.
 def home(request):
-    return render(request, "index.html")
+
+    # Retrieves all Movies name in the database
+    movies = Movie.objects.all()
+
+    # Passes data from the view to the template
+    context = {
+        "movies": movies,
+    }
+    return render(request, "index.html", context)
 
 
 def login_view(request):
