@@ -105,17 +105,26 @@
     </nav>
 
     {% if user.is_authenticated %}
-    <!--Automates through Carousel Syntax-->
+    <!--Automatic Carousel Banner Syntax-->
     <div class="container-fluid p-0">
       <div class="banner-carousel">
         {% for movie in movies %}
         <div
           class="banner-slide"
+          data-title="{{ movie.title }}"
+          data-description="{{ movie.description }}"
+          data-release-date="{{ movie.release_date }}"
+          data-genre="{{ movie.genre }}"
+          data-length="{{ movie.length }}"
+          data-image-card-url="{{ movie.image_card.url }}"
+          data-image-cover-url="{{ movie.image_cover.url }}"
           style="background-image: url('{{ movie.image_card.url }}');">
           <div class="banner-content">
             <h1>{{ movie.title }}</h1>
             <p>{{ movie.description }}</p>
-            <button class="btn btn-primary" type="button">Watch Now</button>
+            <button class="btn btn-netflix" onclick="ShowModal(this)">
+              Watch Now
+            </button>
           </div>
         </div>
         {% endfor %}
@@ -128,7 +137,17 @@
         {% for movie in movies %}
         <!-- Movie Thumbnail -->
         <div class="col-lg-3 col-md-4 col-sm-12">
-          <div class="movie-thumbnail" data-video="trailer.mp4">
+          <div
+            class="movie-thumbnail"
+            data-title="{{ movie.title }}"
+            data-description="{{ movie.description }}"
+            data-release-date="{{ movie.release_date }}"
+            data-genre="{{ movie.genre }}"
+            data-length="{{ movie.length }}"
+            data-image-card-url="{{ movie.image_card.url }}"
+            data-image-cover-url="{{ movie.image_cover.url }}"
+            data-video-url=""
+            onclick="showModal(this)">
             <div
               style="background-image: url('{{ movie.image_card.url }}');"
               class="thumbnail-image">
@@ -143,6 +162,36 @@
           </div>
         </div>
         {% endfor %}
+      </div>
+    </div>
+
+    <!-- Modal Template -->
+    <div class="modal" id="movieModal" style="display: none">
+      <div class="modal-content">
+        <div class="flex justify-between">
+          <h2 class="text-xl mb-5">Movie Title</h2>
+        </div>
+        <img width="1000" height="100" src="" alt="Movie Image" class="mb-5" />
+        <div class="flex justify-between mb-5">
+          <span>Year: 2023</span>
+          <span>Genre: Action</span>
+          <span>Length: 2h 15min</span>
+        </div>
+        <p class="mb-5">Detailed information about the movie.</p>
+        <div class="flex space-x-4 mb-5">
+          <a href="movie.html">
+            <button
+              class="bg-red-600 text-white p-2 px-5 rounded hover:bg-red-500">
+              Play
+            </button>
+          </a>
+          <button
+            id="addToListButton"
+            onclick="addItemToList()"
+            class="border border-white text-white p-2 px-5 rounded hover:bg-gray-700">
+            Add to List
+          </button>
+        </div>
       </div>
     </div>
 
@@ -216,5 +265,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static '/js/script.js' %}"></script>
     <script src="{% static '/js/carousel.js' %}"></script>
+    <script src="{% static '/js/modal.js' %}"></script>
   </body>
 </html>

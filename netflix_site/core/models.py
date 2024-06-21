@@ -9,13 +9,13 @@ import uuid
 class Movie(models.Model):
 
     GENRE_CHOICES = [
-        ("ACTION", "Action"),
-        ("COMEDY", "Comedy"),
-        ("DRAMA", "Drama"),
-        ("HORROR", "Horror"),
-        ("ROMANCE", "Romance"),
-        ("SCIENCE_FICTION", "Science Fiction"),
-        ("FANTASY", "Fantasy"),
+        ("Action", "Action"),
+        ("Comedy", "Comedy"),
+        ("Drama", "Drama"),
+        ("Horror", "Horror"),
+        ("Romance", "Romance"),
+        ("Science_Fiction", "Science Fiction"),
+        ("Fantasy", "Fantasy"),
     ]
 
     RATING = [
