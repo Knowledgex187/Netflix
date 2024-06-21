@@ -140,6 +140,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# Shows where the movies will be uploaded to
+MEDIA_URL = "static/movie_videos/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
