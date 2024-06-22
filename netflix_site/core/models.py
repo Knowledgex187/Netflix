@@ -14,7 +14,7 @@ class Movie(models.Model):
         ("Drama", "Drama"),
         ("Horror", "Horror"),
         ("Romance", "Romance"),
-        ("Science_Fiction", "Science Fiction"),
+        ("Science Fiction", "Science Fiction"),
         ("Fantasy", "Fantasy"),
     ]
 

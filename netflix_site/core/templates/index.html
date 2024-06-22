@@ -120,7 +120,7 @@
           data-length="{{ movie.length }}"
           data-image-card-url="{{ movie.image_card.url }}"
           data-image-cover-url="{{ movie.image_cover.url }}"
-          data-video-url="{{ movie.uuid }}"
+          data-video-url="/movie/{{ movie.uuid }}"
           data-stars="{{ movie.stars}}"
           data-rating="{{ movie.rating }}"
           style="background-image: url('{{ movie.image_card.url }}');"
@@ -149,7 +149,7 @@
             data-length="{{ movie.length }}"
             data-image-card-url="{{ movie.image_card.url }}"
             data-image-cover-url="{{ movie.image_cover.url }}"
-            data-video-url="{{ movie.uuid }}"
+            data-video-url="/movie/{{ movie.uuid }}"
             data-stars="{{ movie.stars}}"
             data-rating="{{ movie.rating }}"
             onclick="showModal(this)">
