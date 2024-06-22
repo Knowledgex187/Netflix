@@ -118,13 +118,11 @@
           data-length="{{ movie.length }}"
           data-image-card-url="{{ movie.image_card.url }}"
           data-image-cover-url="{{ movie.image_cover.url }}"
-          style="background-image: url('{{ movie.image_card.url }}');">
+          style="background-image: url('{{ movie.image_card.url }}');"
+          onclick="showModal(this)">
           <div class="banner-content">
             <h1>{{ movie.title }}</h1>
             <p>{{ movie.description }}</p>
-            <button class="btn btn-netflix" onclick="ShowModal(this)">
-              Watch Now
-            </button>
           </div>
         </div>
         {% endfor %}
@@ -146,7 +144,7 @@
             data-length="{{ movie.length }}"
             data-image-card-url="{{ movie.image_card.url }}"
             data-image-cover-url="{{ movie.image_cover.url }}"
-            data-video-url=""
+            data-video-url="{{ movie.video_url }}"
             onclick="showModal(this)">
             <div
               style="background-image: url('{{ movie.image_card.url }}');"
@@ -168,29 +166,25 @@
     <!-- Modal Template -->
     <div class="modal" id="movieModal" style="display: none">
       <div class="modal-content">
-        <div class="flex justify-between">
-          <h2 class="text-xl mb-5">Movie Title</h2>
+        <div class="modal-header">
+          <h2>Movie Title</h2>
+          <button class="close-button" onclick="hideModal()">X</button>
         </div>
-        <img width="1000" height="100" src="" alt="Movie Image" class="mb-5" />
-        <div class="flex justify-between mb-5">
-          <span>Year: 2023</span>
-          <span>Genre: Action</span>
-          <span>Length: 2h 15min</span>
+        <img src="" alt="Movie Image" class="modal-image" />
+        <div class="modal-details">
+          <span class="modal-year">Year: </span>
+          <span class="modal-genre">Genre: </span>
+          <span class="modal-length">Length: </span>
         </div>
-        <p class="mb-5">Detailed information about the movie.</p>
-        <div class="flex space-x-4 mb-5">
-          <a href="movie.html">
-            <button
-              class="bg-red-600 text-white p-2 px-5 rounded hover:bg-red-500">
-              Play
-            </button>
-          </a>
+        <p>Movie Description</p>
+        <div class="modal-actions">
           <button
             id="addToListButton"
             onclick="addItemToList()"
-            class="border border-white text-white p-2 px-5 rounded hover:bg-gray-700">
+            class="btn btn-secondary">
             Add to List
           </button>
+          <a href="#" class="btn btn-danger" id="watchNowButton">Play</a>
         </div>
       </div>
     </div>
