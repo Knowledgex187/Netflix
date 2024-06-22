@@ -19,11 +19,13 @@ from django.contrib.auth import authenticate, login, logout as auth_logout
 # Import database
 from .models import Movie
 
+# Decorator for logged in users
+from django.contrib.auth.decorators import login_required
+
 # Special Character Syntax
 SpecialSym = set("!£$%^&*()?@;:~`¬-=_+")
 
 
-# Create your views here.
 def home(request):
 
     # Retrieves all Movies name in the database
@@ -34,6 +36,21 @@ def home(request):
         "movies": movies,
     }
     return render(request, "index.html", context)
+
+
+@login_required(login_url="login")
+def movie(request, pk):
+
+    # Movie_uuid is equal to primary key id
+    movie_uuid = pk
+    # uuid is the database field name
+    movie_details = Movie.objects.get(uuid=movie_uuid)
+
+    content = {
+        "movie_details": movie_details,
+    }
+
+    return render(request, "movie.html", content)
 
 
 def login_view(request):
@@ -171,5 +188,6 @@ def logout(request):
     return redirect("/")
 
 
+@login_required(login_url="login")
 def profiles(request):
     return render(request, "profiles.html")

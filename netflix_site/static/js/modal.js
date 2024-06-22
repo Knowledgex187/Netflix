@@ -8,9 +8,11 @@ function showModal(element) {
     const description = parent.getAttribute('data-description'); // Get the movie description
     const releaseDate = parent.getAttribute('data-release-date'); // Get the release date
     const genre = parent.getAttribute('data-genre'); // Get the genre
+    const rating = parent.getAttribute('data-rating'); // Get move rating
     const length = parent.getAttribute('data-length'); // Get the movie length
     const imageCoverUrl = parent.getAttribute('data-image-cover-url'); // Get the URL for the cover image
     const videoUrl = parent.getAttribute('data-video-url'); // Get the URL for the video
+    const stars = parent.getAttribute('data-stars'); // Get movie stars data
 
     // Get the modal element by its ID
     const modal = document.getElementById('movieModal');
@@ -21,8 +23,10 @@ function showModal(element) {
     modal.querySelector('.modal-image').alt = `${title} Cover Image`; // Set the alt text for the image
     modal.querySelector('.modal-year').textContent = `Year: ${releaseDate}`; // Set the release year
     modal.querySelector('.modal-genre').textContent = `Genre: ${genre}`; // Set the genre
+    modal.querySelector('.modal-rating').textContent = `Rating: ${rating}`; // Set movie rating
     modal.querySelector('.modal-length').textContent = `Length: ${length} min`; // Set the length in minutes
     modal.querySelector('.modal-content p').textContent = description; // Set the description
+    modal.querySelector('.modal-stars').textContent = `Starring: ${stars}`;
     modal.querySelector('#watchNowButton').href = videoUrl; // Set the link for the "Watch Now" button to the video URL
 
     // Show the modal

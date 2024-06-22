@@ -216,14 +216,21 @@
 
 .modal-details span {
     font-size: 1rem; /* Font size for details */
-    color: #b3b3b3; /* Lighter color for text */
+    color: #f80707; /* Lighter color for text */
+    font-weight: 700; /* Adds Boldness */
 }
 
 .modal-content p {
     font-size: 1rem; /* Font size for description */
     line-height: 1.5; /* Line height for readability */
     color: #b3b3b3; /* Lighter color for text */
-    margin-bottom: 30px; /* Space below description */
+}
+
+.modal-stars {
+    font-size: 1rem; /* Font size for stars */
+    color: #b3b3b3; /* Lighter color for text */
+    line-height: 1.5; /* Line height for readability */
+
 }
 
 .modal-actions {

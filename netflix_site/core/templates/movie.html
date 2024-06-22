@@ -33,23 +33,61 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- My list drop down menu-->
+        <div class="collapse navbar-collapse mx-5">
+          <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <a class="btn btn-outline-secondary w-50" href="#">My List</a>
+            <div class="dropdown">
+              <button
+                class="btn btn-danger dropdown-toggle mx-2 justify-content-start"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Genres
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/genre/action/">Action</a>
+                <a class="dropdown-item" href="/genre/comedy/">Comedy</a>
+                <a class="dropdown-item" href="/genre/drama/">Drama</a>
+                <a class="dropdown-item" href="/genre/horror/">Horror</a>
+                <a class="dropdown-item" href="/genre/romance/">Romance</a>
+                <a class="dropdown-item" href="/genre/sciencefiction/"
+                  >Science Fiction</a
+                >
+                <a class="dropdown-item" href="/genre/fantasy/">Fantasy</a>
+              </div>
+            </div>
+          </ul>
+        </div>
+
+        <!--Search bar, welcome screen and log out button-->
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+          <ul class="navbar-nav ms-auto d-flex align-items-center">
+            <div class="input-group mx-3">
+              <form action="search" method="POST">
+                <input
+                  type="text"
+                  class=""
+                  placeholder="Search..."
+                  aria-label="search"
+                  name="search"
+                  aria-describedby="search" />
+                <button class="btn btn-danger" type="submit" name="search">
+                  Search
+                </button>
+              </form>
+            </div>
+            <li>
+              <span class="nav-link"> Welcome, {{ user.first_name }} </span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Movies</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">TV Shows</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My List</a>
+              <a class="nav-link btn btn-danger mx-2" href="{% url 'logout' %}"
+                >Logout</a
+              >
             </li>
           </ul>
         </div>
-      </div>
     </nav>
 
     <!-- Banner Section -->

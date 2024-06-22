@@ -34,6 +34,7 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <!--Error Messages-->
         <div>
           <style>
             h6 {
@@ -43,6 +44,7 @@
           {% for message in messages %}
           <h6>{{message}}</h6>
           {% endfor %} {% if user.is_authenticated %}
+          <!-- My list drop down menu-->
           <div class="collapse navbar-collapse mx-5">
             <ul class="navbar-nav ms-auto d-flex align-items-center">
               <a class="btn btn-outline-secondary w-50" href="#">My List</a>
@@ -70,6 +72,7 @@
           </div>
         </div>
 
+        <!--Search bar, welcome screen and log out button-->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
             <div class="input-group mx-3">
@@ -101,7 +104,6 @@
             {% endif %}
           </ul>
         </div>
-      </div>
     </nav>
 
     {% if user.is_authenticated %}
@@ -118,7 +120,9 @@
           data-length="{{ movie.length }}"
           data-image-card-url="{{ movie.image_card.url }}"
           data-image-cover-url="{{ movie.image_cover.url }}"
-          data-video-url="{{ movie.video_url }}"
+          data-video-url="{{ movie.uuid }}"
+          data-stars="{{ movie.stars}}"
+          data-rating="{{ movie.rating }}"
           style="background-image: url('{{ movie.image_card.url }}');"
           onclick="showModal(this)">
           <div class="banner-content">
@@ -145,7 +149,9 @@
             data-length="{{ movie.length }}"
             data-image-card-url="{{ movie.image_card.url }}"
             data-image-cover-url="{{ movie.image_cover.url }}"
-            data-video-url="{{ movie.video_url }}"
+            data-video-url="{{ movie.uuid }}"
+            data-stars="{{ movie.stars}}"
+            data-rating="{{ movie.rating }}"
             onclick="showModal(this)">
             <div
               style="background-image: url('{{ movie.image_card.url }}');"
@@ -175,9 +181,12 @@
         <div class="modal-details">
           <span class="modal-year">Year: </span>
           <span class="modal-genre">Genre: </span>
+          <span class="modal-rating">Rating: </span>
           <span class="modal-length">Length: </span>
         </div>
         <p>Movie Description</p>
+        <hr>
+        <p><em class="modal-stars"></em></p>
         <div class="modal-actions">
           <button
             id="addToListButton"
