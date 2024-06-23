@@ -45,9 +45,11 @@ def movie(request, pk):
     movie_uuid = pk
     # uuid is the database field name
     movie_details = Movie.objects.get(uuid=movie_uuid)
+    movie_all = Movie.objects.all()
 
     content = {
         "movie_details": movie_details,
+        "movie_all": movie_all,
     }
 
     return render(request, "movie.html", content)
