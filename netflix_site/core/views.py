@@ -22,6 +22,14 @@ from .models import Movie
 # Decorator for logged in users
 from django.contrib.auth.decorators import login_required
 
+# The re module provides a wide array of functions and tools to work with regular expressions. Regular expressions allow you to search, match, and manipulate strings based on specific patterns.
+import re
+
+#  JsonResponse is a convenient way to return JSON-encoded data in HTTP responses.
+from django.http import JsonResponse
+
+from django.shortcuts import get_object_or_404
+
 # Special Character Syntax
 SpecialSym = set("!£$%^&*()?@;:~`¬-=_+")
 
@@ -36,6 +44,76 @@ def home(request):
         "movies": movies,
     }
     return render(request, "index.html", context)
+
+
+@login_required(login_url="login")
+def my_list(request):
+    # Query the MovieList model to get all entries where the owner_user is the current user
+    movie_list = MovieList.objects.filter(owner_user=request.user)
+
+    # Initialize an empty list to store the movies
+    user_movie_list = []
+
+    # Loop through each entry in the movie_list
+    for movie in movie_list:
+        # Append the movie object from each MovieList entry to the user_movie_list
+        user_movie_list.append(movie.movie)
+
+    # Create a context dictionary to pass the list of movies to the template
+    context = {"movies": user_movie_list}
+
+    # Render the 'my_list.html' template with the context data
+    return render(request, "my_list.html", context)
+
+
+@login_required(login_url="login")
+def add_to_list(request):
+    # Check if the request method is POST
+    if request.method == "POST":
+        # Retrieve the 'movie_id' from the POST data
+        movie_url_id = request.POST.get("movie_id")
+
+        # Define a regex pattern to match a UUID
+        uuid_pattern = (
+            r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+        )
+
+        # Search for the UUID pattern within the movie_url_id
+        match = re.search(uuid_pattern, movie_url_id)
+
+        # Extract the matched UUID or set movie_id to None if no match found
+        movie_id = match.group() if match else None
+
+        if movie_id:
+            # Use get_object_or_404 to retrieve the Movie object with the matched UUID
+            # This will raise a 404 error if no matching Movie is found
+            movie = get_object_or_404(Movie, uuid=movie_id)
+
+            # Attempt to get or create a MovieList object with the given user and movie
+            # `owner_user` is set to the current user, and `movie` is the retrieved Movie object
+            movie_list, created = MovieList.objects.get_or_create(
+                owner_user=request.user, movie=movie
+            )
+
+            # Prepare the response data based on whether a new MovieList entry was created
+            if created:
+                response_data = {
+                    "status": "success",
+                    "message": "Added ✓",
+                }  # New entry created
+            else:
+                response_data = {
+                    "status": "info",
+                    "message": "Movie already in list",
+                }  # Entry already exists
+
+            # Return the response data as a JSON response
+            return JsonResponse(response_data)
+        else:
+            # If the request method is not POST, return an error response with a 400 status code
+            return JsonResponse(
+                {"status": "error", "message": "Invalid request"}, status=400
+            )
 
 
 @login_required(login_url="login")
@@ -184,6 +262,7 @@ def signup(request):
     return render(request, "signup.html")
 
 
+@login_required(login_url="login")
 def logout(request):
     auth_logout(request)
     messages.info(request, "You have logged out!")

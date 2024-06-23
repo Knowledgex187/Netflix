@@ -1,13 +1,11 @@
 from django.db import models
-
-# Imports UUID Module
 import uuid
+from django.conf import settings
 
-# Create your models here.
 
-
+# Define the Movie model
 class Movie(models.Model):
-
+    # Choices for genre
     GENRE_CHOICES = [
         ("Action", "Action"),
         ("Comedy", "Comedy"),
@@ -18,6 +16,7 @@ class Movie(models.Model):
         ("Fantasy", "Fantasy"),
     ]
 
+    # Choices for rating
     RATING = [
         ("U", "U"),
         ("PG", "PG"),
@@ -26,37 +25,47 @@ class Movie(models.Model):
         ("18", "18"),
     ]
 
-    # This field stores a universally unique identifier
-    uuid = models.UUIDField(default=uuid.uuid4)
-    # This field stores a short text, in this case, the title of the movie.
-    title = models.CharField()
-    # This field is intended to store a description of the movie.
+    # Field to store a universally unique identifier for the movie
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    # Field to store the title of the movie
+    title = models.CharField(max_length=255)
+    # Field to store a description of the movie
     description = models.TextField()
-    # This field stores the names of the main actors or stars of the movie.
-    stars = models.CharField()
-    # This field stores the release date of the movie in date format (YYYY-MM-DD).
+    # Field to store the names of the main actors or stars of the movie
+    stars = models.CharField(max_length=255)
+    # Field to store the release date of the movie
     release_date = models.DateField()
-    # This field stores the genre of the movie.
-    genre = models.CharField(choices=GENRE_CHOICES)
-    # Rating
-    rating = models.CharField(choices=RATING, default="U")
-    # This field stores the length of the movie in minutes.
+    # Field to store the genre of the movie, with choices defined above
+    genre = models.CharField(max_length=50, choices=GENRE_CHOICES)
+    # Field to store the rating of the movie, with choices defined above and a default value of "U"
+    rating = models.CharField(max_length=2, choices=RATING, default="U")
+    # Field to store the length of the movie in minutes
     length = models.PositiveIntegerField()
-    # This field stores the name of the director of the movie.
-    director = models.CharField()
-    # This field stores the name of the producer of the movie.
-    produced_by = models.CharField()
-    # This field stores the name(s) of the writer(s) of the movie.
-    writers = models.CharField()
-    # This field is for storing an image associated with the movie, typically a small thumbnail or card image.
+    # Field to store the name of the director of the movie
+    director = models.CharField(max_length=255)
+    # Field to store the name of the producer of the movie
+    produced_by = models.CharField(max_length=255)
+    # Field to store the names of the writers of the movie
+    writers = models.CharField(max_length=255)
+    # Field to store a small image (thumbnail) for the movie
     image_card = models.ImageField(upload_to="media/images/")
-    # This field is for storing a larger cover image for the movie.
+    # Field to store a larger cover image for the movie
     image_cover = models.ImageField(upload_to="media/images/")
-    # This field stores a video file of the movie.
+    # Field to store a video file of the movie
     video = models.FileField(upload_to="media/")
-    # This field keeps track of the number of views the movie has received.
+    # Field to keep track of the number of views the movie has received
     movie_views = models.IntegerField(default=0)
 
-    # This returns the title of the movie. This is useful for displaying the movie title in Django admin or when the object is printed in other contexts.
+    # String representation of the model, returning the title of the movie
     def __str__(self):
         return self.title
+
+
+# Define the MovieList model, representing a list of movies for a user
+class MovieList(models.Model):
+    # Foreign key to the user model, indicating which user owns this movie list
+    owner_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
+    # Foreign key to the movie model, linking each list entry to a movie
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

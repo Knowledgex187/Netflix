@@ -78,6 +78,7 @@
           <ul class="navbar-nav ms-auto d-flex align-items-center">
             <div class="input-group mx-3">
               <form action="search" method="POST">
+                {% csrf_token %}
                 <input
                   type="text"
                   class=""
@@ -271,5 +272,8 @@
     <script src="{% static '/js/script.js' %}"></script>
     <script src="{% static '/js/carousel.js' %}"></script>
     <script src="{% static '/js/modal.js' %}"></script>
+    <!--Latest Ajax CDN for synchronized requests-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-44/C0tw5oxxh3qibxZzm+VG2IVnGZm8zqqCxSSh4l8sBo5sCZyHL26Cg4jMZgDWB" crossorigin="anonymous"></script>
+
   </body>
 </html>

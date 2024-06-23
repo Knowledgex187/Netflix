@@ -29,6 +29,9 @@ function showModal(element) {
     modal.querySelector('.modal-stars').textContent = `Starring: ${stars}`;
     modal.querySelector('#watchNowButton').href = videoUrl; // Set the link for the "Watch Now" button to the video URL
 
+    // Store movie ID in a data attribute for later use in adding to the list
+    modal.setAttribute('data-movie-id', videoUrl.split('/').pop());
+
     // Show the modal
     modal.style.display = 'block';
     setTimeout(() => {
@@ -60,4 +63,25 @@ window.onclick = function(event) {
         // Call the function to hide the modal
         hideModal();
     }
+}
+// Function to add the selected movie to the user's list
+function addItemToList() {
+    const modal = document.getElementById('movieModal');
+    const movieID = modal.getAttribute('data-movie-id'); // Get the stored movie ID
+    $.ajax({
+        url: "{% url 'add-to-list' %}",
+        type: "POST",
+        data: {
+            movie_id: movieID,
+            csrfmiddlewaretoken: "{{ csrf_token }}"
+        },
+        success: function(data) {
+            $('#addToListButton').text(data.message); // Update the button text with the response message
+            $('#addToListButton').prop('disabled', true); // Disable the button to prevent duplicate adds
+            console.log("Item added to list!");
+        },
+        error: function(xhr, errmsg, err) {
+            console.error("Error adding item to list: " + errmsg);
+        }
+    });
 }
