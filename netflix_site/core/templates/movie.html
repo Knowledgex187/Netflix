@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Title - Netflix</title>
+    <title>{{movie_details.title}} - Netflix</title>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -122,35 +122,64 @@
     <div class="related-movies container">
       <h5 class="text-center">Related Movies</h5>
       <div class="row movie-thumbnails">
-        {% for movie in movie_all %}
+        {% for movie in movies %}
         <div class="col-lg-3 col-md-4 col-sm-12">
           <div
             class="movie-thumbnail"
-            data-title="{{ movie_all.title }}"
-            data-description="{{ movie_all.description }}"
-            data-release-date="{{ movie_all.release_date }}"
-            data-genre="{{ movie_all.genre }}"
-            data-length="{{ movie_all.length }}"
-            data-image-card-url="{{ movie_all.image_card.url }}"
-            data-image-cover-url="{{ movie_all.image_cover.url }}"
-            data-video-url="/movie/{{movie_all.uuid}}"
-            data-stars="{{ movie_all.stars}}"
-            data-rating="{{ movie_all.rating }}"
+            data-title="{{ movie.title }}"
+            data-description="{{ movie.description }}"
+            data-release-date="{{ movie.release_date }}"
+            data-genre="{{ movie.genre }}"
+            data-length="{{ movie.length }}"
+            data-image-card-url="{{ movie.image_card.url }}"
+            data-image-cover-url="{{ movie.image_cover.url }}"
+            data-video-url="/movie/{{movie.uuid}}"
+            data-stars="{{ movie.stars}}"
+            data-rating="{{ movie.rating }}"
             onclick="showModal(this)">
             <div
-              style="background-image: url('{{ movie_all.image_card.url }}');"
+              style="background-image: url('{{ movie.image_card.url }}');"
               class="thumbnail-image">
               <img
-                src="url('{{ movie_all.image_card.url }}"
+                src="url('{{ movie.image_card.url }}"
                 alt=""
                 class="img-fluid" />
             </div>
             <div class="movie-info">
-              <h5>{{movie_all.title}}</h5>
+              <h5>{{movie.title}}</h5>
             </div>
           </div>
         </div>
         {% endfor %}
+      </div>
+    </div>
+
+     <!-- Modal Template -->
+     <div class="modal" id="movieModal" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Movie Title</h2>
+          <button class="close-button" onclick="hideModal()">X</button>
+        </div>
+        <img src="" alt="Movie Image" class="modal-image" />
+        <div class="modal-details">
+          <span class="modal-year">Year: </span>
+          <span class="modal-genre">Genre: </span>
+          <span class="modal-rating">Rating: </span>
+          <span class="modal-length">Length: </span>
+        </div>
+        <p>Movie Description</p>
+        <hr>
+        <p><em class="modal-stars"></em></p>
+        <div class="modal-actions">
+          <button
+            id="addToListButton"
+            onclick="addItemToList()"
+            class="btn btn-secondary">
+            Add to List
+          </button>
+          <a href="#" class="btn btn-danger" id="watchNowButton">Play</a>
+        </div>
       </div>
     </div>
 
@@ -197,5 +226,9 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static '/js/script.js' %}"></script>
+    <script src="{% static '/js/carousel.js' %}"></script>
+    <script src="{% static '/js/modal.js' %}"></script>
+    <!--Latest Ajax CDN for synchronized requests-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   </body>
 </html>

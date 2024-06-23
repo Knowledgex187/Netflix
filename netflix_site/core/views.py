@@ -123,11 +123,11 @@ def movie(request, pk):
     movie_uuid = pk
     # uuid is the database field name
     movie_details = Movie.objects.get(uuid=movie_uuid)
-    movie_all = Movie.objects.all()
+    movies = Movie.objects.all()
 
     content = {
         "movie_details": movie_details,
-        "movie_all": movie_all,
+        "movies": movies,
     }
 
     return render(request, "movie.html", content)

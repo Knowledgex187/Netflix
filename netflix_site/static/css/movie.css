@@ -162,3 +162,127 @@ body {
     display: block;
     opacity: 0.9;
 }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-show {
+    display: flex !important;
+}
+
+.modal-content {
+    background: #141414; /* Netflix dark background */
+    color: #ffffff; /* White text */
+    padding: 30px; /* Padding inside the modal */
+    border-radius: 8px; /* Rounded corners */
+    width: 90%;
+    max-width: 700px; /* Maximum width for larger screens */
+    position: relative; /* Position relative for child elements */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+    animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Space below header */
+}
+
+.modal-content h2 {
+    font-size: 1.8rem; /* Larger font size */
+    margin: 0; /* No margin */
+    color: #e50914; /* Netflix red color */
+}
+
+.modal-header .close-button {
+    background: none; /* No background for close button */
+    border: none; /* No border */
+    color: #ffffff; /* White color for close button */
+    font-size: 1.5rem; /* Larger font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.modal-header .close-button:hover {
+    color: #e50914; /* Change to Netflix red on hover */
+}
+
+.modal-image {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height to maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below image */
+}
+
+.modal-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px; /* Space below details */
+}
+
+.modal-details span {
+    font-size: 1rem; /* Font size for details */
+    color: #f80707; /* Lighter color for text */
+    font-weight: 700; /* Adds Boldness */
+}
+
+.modal-content p {
+    font-size: 1rem; /* Font size for description */
+    line-height: 1.5; /* Line height for readability */
+    color: #b3b3b3; /* Lighter color for text */
+}
+
+.modal-stars {
+    font-size: 1rem; /* Font size for stars */
+    color: #b3b3b3; /* Lighter color for text */
+    line-height: 1.5; /* Line height for readability */
+
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-actions .btn {
+    padding: 10px 20px; /* Padding inside buttons */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s; /* Smooth background transition */
+}
+
+#watchNowButton {
+    background: #e50914; /* Netflix red */
+    color: #ffffff; /* White text */
+    text-decoration: none; /* No underline */
+}
+
+#watchNowButton:hover {
+    background: #b81c1c; /* Darker red on hover */
+}
+
+#addToListButton {
+    background: #333333; /* Dark background for button */
+    color: #ffffff; /* White text */
+}
+
+#addToListButton:hover {
+    background: #555555; /* Lighter background on hover */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
