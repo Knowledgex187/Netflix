@@ -33,6 +33,8 @@ from django.shortcuts import get_object_or_404
 # Special Character Syntax
 SpecialSym = set("!£$%^&*()?@;:~`¬-=_+")
 
+"""Home Syntax"""
+
 
 def home(request):
 
@@ -44,6 +46,53 @@ def home(request):
         "movies": movies,
     }
     return render(request, "index.html", context)
+
+
+"""Genre syntax"""
+
+
+@login_required(login_url="login")
+def genre(request, pk):
+    # `request` is the HttpRequest object that contains metadata about the request.
+    # `pk` is a parameter passed in the URL which represents the primary key or unique identifier for the genre.
+
+    movie_genre = pk
+    # Assign the `pk` value to `movie_genre`. This `pk` represents the genre of the movies you want to filter by.
+
+    movies = Movie.objects.filter(genre=movie_genre)
+    # Use Django's ORM to filter the `Movie` model objects.
+    # The `filter` method creates a QuerySet containing `Movie` objects where the `genre` field matches `movie_genre`.
+
+    context = {
+        "movies": movies,
+        # `movies` is a QuerySet that will be passed to the template. It contains the list of movies filtered by the selected genre.
+        "movie_genre": movie_genre,
+        # `movie_genre` is passed to the template to show which genre is currently being viewed or filtered.
+    }
+    return render(request, "genre.html", context)
+    # `render` is a shortcut function to render a template with a context.
+    # It takes the `request` object, the template name (`"genre.html"`), and the `context` dictionary.
+    # This will render the `genre.html` template with the provided context, displaying the filtered movies.
+
+
+"""Search Syntax"""
+
+
+@login_required(login_url="login")
+def search_term(request):
+    if request.method == "POST":
+        search = request.POST.get("search", "").strip()
+
+        # __icontains is a field lookup that performs a case-insensitive containment test. It checks if the value of the title field contains the value of search_term, ignoring case differences.
+        movies = Movie.objects.filter(title__icontains=search)
+
+        content = {
+            "movies": movies,
+        }
+    return render(request, "search.html", content)
+
+
+"""My List Syntax"""
 
 
 @login_required(login_url="login")
@@ -64,6 +113,9 @@ def my_list(request):
 
     # Render the 'my_list.html' template with the context data
     return render(request, "my_list.html", context)
+
+
+"""Add to List Syntax"""
 
 
 @login_required(login_url="login")
@@ -116,6 +168,9 @@ def add_to_list(request):
             )
 
 
+"""Movie Syntax"""
+
+
 @login_required(login_url="login")
 def movie(request, pk):
 
@@ -131,6 +186,9 @@ def movie(request, pk):
     }
 
     return render(request, "movie.html", content)
+
+
+"""Login Syntax"""
 
 
 def login_view(request):
@@ -152,6 +210,9 @@ def login_view(request):
             return redirect("/")
     else:
         return render(request, "login.html")
+
+
+"""Sign up Syntax"""
 
 
 def signup(request):
@@ -260,6 +321,9 @@ def signup(request):
             return redirect("signup")
 
     return render(request, "signup.html")
+
+
+"""Logout Syntax"""
 
 
 @login_required(login_url="login")
