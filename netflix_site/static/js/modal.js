@@ -47,6 +47,11 @@ function hideModal() {
     // Remove the class that shows the modal, which may trigger an animation or transition
     modal.classList.remove('modal-show');
 
+    // Reset button text and state
+    const addToListButton = document.getElementById('addToListButton');
+    addToListButton.textContent = 'Add to List'; // Reset button text
+    addToListButton.disabled = false; // Enable the button
+
     // Set the display property to 'none' after a short delay to ensure any animations can complete
     setTimeout(() => {
         modal.style.display = 'none';
@@ -67,13 +72,22 @@ window.onclick = function(event) {
 // Function to add the selected movie to the user's list
 function addItemToList() {
     const modal = document.getElementById('movieModal');
-    const movieID = modal.getAttribute('data-movie-id'); // Get the stored movie ID
+    var movieID = modal.getAttribute('data-movie-id'); // Get the stored movie ID
+
+    if (!movieID) {
+        console.error("Movie ID not found!");
+        return;
+    }
+
+     // Fetch the CSRF token from a hidden input in your form or meta tag
+    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
     $.ajax({
-        url: "{% url 'add-to-list' %}",
+        url: "add-to-list/",
         type: "POST",
         data: {
             movie_id: movieID,
-            csrfmiddlewaretoken: "{{ csrf_token }}"
+            csrfmiddlewaretoken: csrfToken
         },
         success: function(data) {
             $('#addToListButton').text(data.message); // Update the button text with the response message

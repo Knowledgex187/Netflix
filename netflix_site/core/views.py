@@ -17,7 +17,7 @@ from django.core.validators import validate_email
 from django.contrib.auth import authenticate, login, logout as auth_logout
 
 # Import database
-from .models import Movie
+from .models import Movie, MovieList
 
 # Decorator for logged in users
 from django.contrib.auth.decorators import login_required
