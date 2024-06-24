@@ -82,11 +82,9 @@ def genre(request, pk):
 def search_term(request):
     if request.method == "POST":
         search = request.POST.get("search", "").strip()
-        print(f"Search term: {search}")  # Debugging
 
         # __icontains is a field lookup that performs a case-insensitive containment test. It checks if the value of the title field contains the value of search_term, ignoring case differences.
         movies = Movie.objects.filter(title__icontains=search)
-        print(f"Movies found: {movies}")  # Debugging
 
         content = {
             "movies": movies,
