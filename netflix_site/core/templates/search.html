@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% block title %}Search Results - {{search}}{% endblock %}</title>
+    <title>
+      {% block title %}Search Results - {{search | title}}{% endblock %}
+    </title>
   </head>
   <body>
     {% block content %}
@@ -15,9 +17,9 @@
         <strong>Search Result</strong>
       </h3>
       {% if not movies %}
-      <p>No movies found for "{{search}}"</p>
+      <p>No movies found for "{{search | title}}"</p>
       {% else %}
-      <p class="text-center">Search results for "{{search}}"</p>
+      <p class="text-center">Search results for "{{search | title}}"</p>
       {% endif %}
       <div class="row movie-thumbnails justify-content-start">
         {% for movie in movies %}

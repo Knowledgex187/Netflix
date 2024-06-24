@@ -12,7 +12,7 @@ class Movie(models.Model):
         ("Drama", "Drama"),
         ("Horror", "Horror"),
         ("Romance", "Romance"),
-        ("Science Fiction", "Science Fiction"),
+        ("Fiction", "Fiction"),
         ("Fantasy", "Fantasy"),
     ]
 
