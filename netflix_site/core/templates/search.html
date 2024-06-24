@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Netflix</title>
+    <title>Search Results - Netflix</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -77,16 +77,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
             <div class="input-group mx-3">
-              <form action="search" method="POST">
+              <form action="{% url 'search' %}" method="POST">
                 {% csrf_token %}
                 <input
                   type="text"
-                  class=""
-                  placeholder="Search..."
-                  aria-label="search"
-                  name="search"
-                  aria-describedby="search" />
-                <button class="btn btn-danger" type="submit" name="search">
+                  placeholder="Search by title..."
+                  name="search"/>
+                <button class="btn btn-danger" type="submit">
                   Search
                 </button>
               </form>
@@ -110,7 +107,10 @@
 
 
     <div class="mt-5">
-      <h3 class="p-3 text-lg-center text-md-center text-sm-start"><strong>Search results</strong></h3>
+      <h3 class="p-3 text-lg-center text-md-center text-sm-start"><strong>Search Result</strong></h3>
+      {% if not movies %}
+      <p>No movies found for "{{search_term}}"</p>
+      {% endif %}
       <div class="row movie-thumbnails justify-content-start">
         {% for movie in movies %}
         <!-- Movie Thumbnail -->

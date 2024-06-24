@@ -77,16 +77,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
             <div class="input-group mx-3">
-              <form action="search" method="POST">
+              <form action="{% url 'search' %}" method="POST">
                 {% csrf_token %}
                 <input
                   type="text"
-                  class=""
-                  placeholder="Search..."
-                  aria-label="search"
-                  name="search"
-                  aria-describedby="search" />
-                <button class="btn btn-danger" type="submit" name="search">
+                  placeholder="Search by title..."
+                  name="search"/>
+                <button class="btn btn-danger" type="submit">
                   Search
                 </button>
               </form>
