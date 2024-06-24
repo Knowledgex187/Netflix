@@ -1,1 +1,1 @@
-Netflix clone utilising my passion for web develp=opment. Experimenting and pushing my boundaries. 
+Netflix clone utilizing my passion for web development. Experimenting and pushing my boundaries. 
