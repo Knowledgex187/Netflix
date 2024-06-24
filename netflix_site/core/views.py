@@ -339,3 +339,7 @@ def logout(request):
 @login_required(login_url="login")
 def profiles(request):
     return render(request, "profiles.html")
+
+
+def faq(request):
+    return render(request, "faq.html")

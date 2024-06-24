@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% load static%}
+<head>
+  {% block title %}Home{% endblock %}
+</head>
+<body>
+  {% block content %} Welcome to template inheritance
+  <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+  {% endblock %}
+</body>

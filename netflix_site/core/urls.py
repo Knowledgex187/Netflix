@@ -23,4 +23,5 @@ urlpatterns = [
     path("add-to-list/", views.add_to_list, name="add-to-list"),
     path("search/", views.search_term, name="search"),
     path("genre/<str:pk>/", views.genre, name="genre"),
+    path("faq/", views.faq, name="faq"),
 ]
