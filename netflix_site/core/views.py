@@ -48,7 +48,7 @@ def home(request):
     return render(request, "index.html", context)
 
 
-"""Genre syntax"""
+"""Genre syntax - Dropdown Menu"""
 
 
 @login_required(login_url="login")
