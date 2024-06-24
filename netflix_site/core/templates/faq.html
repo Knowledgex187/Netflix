@@ -3,7 +3,220 @@
   {% block title %}FAQ{% endblock %}
 </head>
 <body>
-  {% block content %} Welcome to template inheritance
+  {% block content %}
   <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+  <h2 class="text-center my-3"><strong>FAQ</strong></h2>
+  <hr />
+
+  <div
+    class="container col-lg-8 col-md-6 col-sm-4 accordion accordion-flush"
+    id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne"
+          aria-expanded="false"
+          aria-controls="flush-collapseOne">
+          <strong class="h3">How often am I charged ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseOne"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          You are charged at a monthly tariff, and costs vary depending on
+          individual accounts or family accounts.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseTwo"
+          aria-expanded="false"
+          aria-controls="flush-collapseTwo">
+          <strong class="h3">Can I opt out any time ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseTwo"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          You can opt out any time, however your subscription will end on the
+          last billing date.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseThree"
+          aria-expanded="false"
+          aria-controls="flush-collapseThree">
+          <strong class="h3">Can I have Multiple accounts ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseThree"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          Yes you can, however only one account per email. You cna have multiple
+          users but they'll be under the one main account holder.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFour"
+          aria-expanded="false"
+          aria-controls="flush-collapseFour">
+          <strong class="h3">Does the range of films change ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseFour"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          We change the films daily at no extra costs to your subscription.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFive"
+          aria-expanded="false"
+          aria-controls="flush-collapseFive">
+          <strong class="h3">Does my geographical location matter ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseFive"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          Yes, as different films will be available to different regions.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseSix"
+          aria-expanded="false"
+          aria-controls="flush-collapseSix">
+          <strong class="h3"
+            >What happens when a film I have listed is no longer available
+            ?</strong
+          >
+        </button>
+      </h2>
+      <div
+        id="flush-collapseSix"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          It'll be no longer available until it's re-uploaded. The thumbnail
+          will remain in place, however you will not be able to watch the movie.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseSeven"
+          aria-expanded="false"
+          aria-controls="flush-collapseSeven">
+          <strong class="h3">Can more than one person use my account ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseSeven"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          We have configured Netflix to work based upon your household IP
+          address. So the answer is yes, but no. If we detect a different IP
+          location you will have to re-assign your household IP address via a
+          code sent to the main account holders email.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseEight"
+          aria-expanded="false"
+          aria-controls="flush-collapseEight">
+          <strong class="h3">Is this subscription contract based ?</strong>
+        </button>
+      </h2>
+      <div
+        id="flush-collapseEight"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          No, it's rolling you cna cancel at anytime at no extra cost.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseNine"
+          aria-expanded="false"
+          aria-controls="flush-collapseNine">
+          <strong class="h3"
+            >How long will you retain my details, if i stop paying for my
+            subscription ?</strong
+          >
+        </button>
+      </h2>
+      <div
+        id="flush-collapseNine"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          We will retain your details for 6 months, after a subscription is
+          deactivated if you do not delete your account. If you delete your
+          account there will be no retention of records, and the account will be
+          deleted from our database instantaneously.
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% endblock %}
 </body>
