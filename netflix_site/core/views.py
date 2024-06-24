@@ -122,53 +122,77 @@ def my_list(request):
 
 
 @login_required(login_url="login")
-def add_to_list(request):
-    # Check if the request method is POST
-    if request.method == "POST":
-        # Retrieve the 'movie_id' from the POST data
-        movie_url_id = request.POST.get("movie_id")
+def manage_movie_list(request):
+    # Define a regex pattern to match a UUID format
+    uuid_pattern = (
+        r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    )
 
-        # Define a regex pattern to match a UUID
-        uuid_pattern = (
-            r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    # Extract the 'movie_id' from the request data
+    movie_url_id = (
+        request.POST.get("movie_id")
+        if request.method == "POST"
+        else request.GET.get("movie_id")
+    )
+    match = re.search(uuid_pattern, movie_url_id)
+    movie_id = match.group() if match else None
+
+    # Check if a valid movie_id was found
+    if not movie_id:
+        return JsonResponse(
+            {"status": "error", "message": "Invalid request"}, status=400
         )
 
-        # Search for the UUID pattern within the movie_url_id
-        match = re.search(uuid_pattern, movie_url_id)
+    # Retrieve the Movie object using get_object_or_404 to ensure a valid UUID is used
+    movie = get_object_or_404(Movie, uuid=movie_id)
 
-        # Extract the matched UUID or set movie_id to None if no match found
-        movie_id = match.group() if match else None
-
-        if movie_id:
-            # Use get_object_or_404 to retrieve the Movie object with the matched UUID
-            # This will raise a 404 error if no matching Movie is found
-            movie = get_object_or_404(Movie, uuid=movie_id)
-
-            # Attempt to get or create a MovieList object with the given user and movie
-            # `owner_user` is set to the current user, and `movie` is the retrieved Movie object
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "add":
+            # Add the movie to the user's list
             movie_list, created = MovieList.objects.get_or_create(
                 owner_user=request.user, movie=movie
             )
-
-            # Prepare the response data based on whether a new MovieList entry was created
             if created:
-                response_data = {
-                    "status": "success",
-                    "message": "Added ✓",
-                }  # New entry created
+                return JsonResponse(
+                    {"status": "success", "message": "Added ✓"}
+                )
             else:
-                response_data = {
-                    "status": "info",
-                    "message": "Movie already in list",
-                }  # Entry already exists
+                return JsonResponse(
+                    {"status": "info", "message": "Movie already in list"}
+                )
 
-            # Return the response data as a JSON response
-            return JsonResponse(response_data)
-        else:
-            # If the request method is not POST, return an error response with a 400 status code
-            return JsonResponse(
-                {"status": "error", "message": "Invalid request"}, status=400
+        elif action == "remove":
+            # Remove the movie from the user's list
+            movie_list = MovieList.objects.filter(
+                owner_user=request.user, movie=movie
             )
+            if movie_list.exists():
+                movie_list.delete()
+                return JsonResponse(
+                    {"status": "success", "message": "Removed from list"}
+                )
+            else:
+                return JsonResponse(
+                    {"status": "info", "message": "Movie not in list"}
+                )
+        else:
+            return JsonResponse(
+                {"status": "error", "message": "Invalid action"}, status=400
+            )
+
+    elif request.method == "GET":
+        # Check if the movie is in the user's list
+        in_list = MovieList.objects.filter(
+            owner_user=request.user, movie=movie
+        ).exists()
+        return JsonResponse({"in_list": in_list})
+
+    else:
+        return JsonResponse(
+            {"status": "error", "message": "Invalid request method"},
+            status=400,
+        )
 
 
 """Movie Syntax"""

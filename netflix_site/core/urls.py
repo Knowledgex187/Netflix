@@ -19,9 +19,31 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     # Dynamic URLs
     path("movie/<str:pk>/", views.movie, name="movie"),
+    path(
+        "movie/<str:pk>/manage-movie-list/",
+        views.manage_movie_list,
+        name="manage-movie-list",
+    ),
     path("genre/<str:pk>/", views.genre, name="genre"),
+    path(
+        "genre/<str:pk>/manage-movie-list/",
+        views.manage_movie_list,
+        name="manage-movie-list",
+    ),
     path("my-list/", views.my_list, name="my-list"),
-    path("add-to-list/", views.add_to_list, name="add-to-list"),
+    path(
+        "my-list/manage-movie-list/",
+        views.manage_movie_list,
+        name="manage-movie-list",
+    ),
+    path(
+        "manage-movie-list/", views.manage_movie_list, name="manage-movie-list"
+    ),
     path("search/", views.search_term, name="search"),
+    path(
+        "search/manage-movie-list/",
+        views.manage_movie_list,
+        name="manage-movie-list",
+    ),
     path("faq/", views.faq, name="faq"),
 ]
