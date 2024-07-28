@@ -76,7 +76,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto d-flex align-items-center">
             <div class="input-group mx-3">
-            <form action="{% url 'search' %}" method="POST">
+            <form action="{% url 'search' %}" method="POST" class="d-flex">
                 {% csrf_token %}
                 <input
                 type="text"
